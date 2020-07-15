@@ -1,16 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 html {
   font-size: 62.5%;
   box-sizing: border-box;
 }
 
-body, #root {
+body,
+#root {
   height: 100vh;
   margin: 0;
 }
 
-body, input, select, button, textarea {
+body,
+input,
+select,
+button,
+textarea {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   /* 16px */
   font-size: 1.6rem;
@@ -19,9 +24,9 @@ body, input, select, button, textarea {
 .grid-container {
   display: grid;
   grid-template-areas:
-  "header"
-  "main"
-  "footer";
+    'header'
+    'main'
+    'footer';
   /* 50px */
   grid-template-rows: 5rem 1fr 5rem;
   grid-template-columns: 1fr;
@@ -200,4 +205,26 @@ footer {
 .total > div,
 .total > button {
   flex: 1;
+}
+
+/* Checkout form */
+form {
+  width: 100%;
+}
+
+.form-container {
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+}
+
+.form-container li {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+input {
+  padding: 1rem;
+  border: 0.1rem #c0c0c0 solid;
 }
