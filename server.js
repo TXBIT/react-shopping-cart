@@ -40,20 +40,71 @@ const Product = mongoose.model(
   })
 );
 
+const Order = mongoose.model(
+  'Order',
+  new mongoose.Schema(
+    {
+      _id: {
+        type: String,
+        default: shortid.generate,
+      },
+      email: {
+        type: String,
+      },
+      name: {
+        type: String,
+      },
+      address: {
+        type: String,
+      },
+      total: {
+        type: Number,
+      },
+      cartItems: [
+        {
+          _id: String,
+          title: String,
+          price: Number,
+          count: Number,
+        },
+      ],
+    },
+    {
+      timestamps: true,
+    }
+  )
+);
+
 app.get('/api/products', async (req, res) => {
   const products = await Product.find({});
   res.send(products);
 });
 
 app.post('/api/products', async (req, res) => {
-  const newProduct = new Product(req.body);
-  const savedProduct = await newProduct.save();
+  // const newProduct = new Product(req.body);
+  // const savedProduct = await newProduct.save();
+  const savedProduct = await Product(req.body).save();
   res.send(savedProduct);
 });
 
 app.delete('/api/products/:id', async (req, res) => {
   const deleteProduct = await Product.findByIdAndDelete(req.params.id);
   res.send(deleteProduct);
+});
+
+app.post('/api/orders', async (req, res) => {
+  if (
+    !req.body.name ||
+    !req.body.email ||
+    !req.body.address ||
+    !req.body.total ||
+    !req.body.cartItems
+  ) {
+    return res.send({ message: 'Data is required.' });
+  }
+
+  const order = await Order(req.body).save();
+  res.send(order);
 });
 
 const port = process.env.PORT || 5000;
