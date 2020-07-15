@@ -4,7 +4,7 @@ import {
   ORDER_PRODUCTS_BY_PRICE,
 } from '../types';
 
-export const productsReducer = (state = {}, action) => {
+export const productReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS:
       return { items: action.payload, filteredItems: action.payload };
