@@ -1,7 +1,7 @@
 import { CREATE_ORDER, CLEAR_CART, CLEAR_ORDER, FETCH_ORDERS } from '../types';
 
 export const createOrder = (order) => (dispatch) => {
-  fetch(`http://localhost:5000/api/orders`, {
+  fetch(`/api/orders`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const clearOrder = () => (dispatch) => {
 };
 
 export const fetchOrders = () => (dispatch) => {
-  fetch(`http://localhost:5000/api/orders`)
+  fetch(`/api/orders`)
     .then((res) => res.json())
     .then((data) => {
       dispatch({
